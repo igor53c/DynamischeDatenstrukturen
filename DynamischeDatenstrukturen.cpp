@@ -6,6 +6,8 @@
 #include <list>
 #include <stack>
 #include <queue>
+#include <set>
+#include <bitset>
 
 using namespace std;
 
@@ -19,6 +21,11 @@ void demoStack();
 
 void demoQueue();
 
+void demoSet();
+void ausgabe(set<int>);
+
+void demoBitset();
+
 int main()
 {
 	locale::global(locale("German_germany"));
@@ -29,7 +36,12 @@ int main()
 
 	//demoStack();
 
-	demoQueue();
+	//demoQueue();
+
+	//demoSet();
+
+	demoBitset();
+
 
 	return EXIT_SUCCESS;
 }
@@ -248,3 +260,149 @@ void demoQueue()
 		schlange.pop();
 	}
 }
+
+void demoSet()
+{
+	set<int> s1;
+
+	s1.insert(6);
+	s1.insert(2);
+	s1.insert(9);
+	s1.insert(8);
+	s1.insert(4);
+	s1.insert(3);
+	s1.insert(7);
+	s1.insert(5);
+
+	ausgabe(s1);
+
+	s1.insert(1);
+	s1.insert(7);
+
+	ausgabe(s1);
+
+	s1.erase(s1.begin(), s1.find(5));
+
+	ausgabe(s1);
+
+	s1.erase(5);
+
+	ausgabe(s1);
+
+	set<int> s2;
+
+	s2.insert(1);
+	s2.insert(2);
+	s2.insert(3);
+
+	s2.insert(s1.begin(), s1.end());
+
+	ausgabe(s2);
+
+}
+
+void ausgabe(set<int> s)
+{
+	for (const auto wert : s)
+	{
+		printf("%4d", wert);
+	}
+
+	cout << endl;
+}
+
+void demoBitset()
+{
+	bitset<32> bitset1;
+
+	cout << bitset1 << endl;
+
+	bitset<32> bitset2(204);
+
+	cout << bitset2 << endl;
+
+	bitset<32> bitset3("1100");
+
+	cout << bitset3 << endl;
+
+	/*bitset<32> bitset4("alfatraining");
+
+	cout << bitset4 << endl;*/
+
+	bitset<8> set8;
+
+	cout << set8 << endl;
+
+	set8[1] = 1;
+
+	cout << set8 << endl;
+
+	set8[4] = set8[1];
+
+	cout << set8 << endl;
+
+	cout << set8.count() << endl;
+
+	cout << set8.size() - set8.count() << endl;
+
+	cout << sizeof(set8) << endl;
+
+	cout << sizeof(bitset1) << endl;
+
+	for (int i = 0; i < set8.size(); i++)
+	{
+		cout << set8.test(i) << " ";
+	}
+
+	cout << endl;
+
+	for (int i = set8.size() - 1; i >=0; i--)
+	{
+		cout << set8.test(i) << " ";
+	}
+
+	cout << endl;
+
+	if (set8.any())
+		cout << "min 1 bit" << endl;
+
+	if (set8.none())
+		cout << "kein bit" << endl;
+
+	set8.set();
+
+	cout << set8 << endl;
+
+	set8.set(4, 0);
+
+	cout << set8 << endl;
+
+	set8.set(4);
+
+	cout << set8 << endl;
+
+	set8.reset(2);
+
+	cout << set8 << endl;
+
+	set8.reset();
+
+	cout << set8 << endl;
+
+	set8.flip(2);
+
+	cout << set8 << endl;
+
+	set8.flip();
+
+	cout << set8 << endl;
+
+	set8 = bitset<8>('?');
+
+	cout << set8 << endl;
+
+	set8 = bitset<8>('*');
+
+	cout << set8 << endl;
+}
+
